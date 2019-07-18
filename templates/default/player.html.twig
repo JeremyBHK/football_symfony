@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+	<h1>{{player.name}}</h1>
+
+	<h2>Modifier le nom du joueur</h2>
+	{{ form(edit_form) }}
+
+{% endblock %}

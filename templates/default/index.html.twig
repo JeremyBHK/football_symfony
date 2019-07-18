@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello DefaultController!{% endblock %}
+
+{% block body %}
+
+    <h1>Football Team</h1>
+
+    {% if players is empty %}
+        <p>Il n'y a aucun joueur</p>
+    {% else %}
+        <p>Il y a {{ players|length }} joueurs</p>
+        {{ dump(players) }}
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for player in players %}
+                <tr>
+                    <td>
+                        <a href="{{ path('player', {'id': player.id}) }}">
+                            {{ player.name }}
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{{ path('playerDelete', {'id': player.id}) }}">X</a>
+                    </td>
+                </tr> 
+                {% endfor %}
+            </tbody>
+        </table>
+
+    {% endif %}
+
+    <h2>Ajouter un joueur</h2>
+
+    {{ form_start(add_player) }}
+        {{ form_row(add_player.name) }}
+    {{ form_end(add_player) }}
+{% endblock %}
+
